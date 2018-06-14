@@ -1,43 +1,48 @@
-# Remote-ffprobe [![Build Status](https://secure.travis-ci.org/noblesamurai/remote-ffprobe.png?branch=master)](http://travis-ci.org/noblesamurai/remote-ffprobe) [![NPM version](https://badge-me.herokuapp.com/api/npm/remote-ffprobe.png)](http://badges.enytc.com/for/npm/remote-ffprobe)
+# remote-ffprobe
 
 > ffprobe a url.
 
-## Getting Started
-Install the module with: `npm install remote-ffprobe`
+## Purpose
+ffprobe a remote file (url).
 
-```javascript
-var remote-ffprobe = require('remote-ffprobe');
-remote-ffprobe.awesome(); // "hello "
+## Usage
+
+```js
+const ffprobe = require('remote-ffprobe');
+ffprobe('http://my/url.mp4').then(metadata => {
+  console.log(metadata);
+});
 ```
 
-## Documentation
+## API
 
-#### .awesome(name)
+<a name="module_index"></a>
 
-**Parameter**: `name`
-**Type**: `String`
-**Example**: `Livia`
+## index
+<a name="exp_module_index--module.exports"></a>
 
-The 'awesome' method is responsible for showing a name.
+### module.exports(url) ⇒ <code>object</code> ⏏
+**Kind**: Exported function
+**Returns**: <code>object</code> - the ffprobe metadatra
 
-How to use this method
+| Param | Type |
+| --- | --- |
+| url | <code>string</code> |
 
-```javascript
-remote-ffprobe.awesome('livia'); // "hello livia"
+Note: To regenerate this section from the jsdoc run `npm run docs` and paste
+the output above.
+
+## Installation
+
+This module is installed via npm:
+
+``` bash
+$ npm install <%= appNameSlug %>
 ```
-
-## Contributing
-
-Please submit all issues and pull requests to the [noblesamurai/remote-ffprobe](https://github.com/noblesamurai/remote-ffprobe) repository!
-
-## Support
-If you have any problem or suggestion please open an issue [here](https://github.com/noblesamurai/remote-ffprobe/issues).
-
-## License 
-
+## License
 The BSD License
 
-Copyright (c) 2018, Tim Allen
+Copyright (c) 2018, Noble Samurai Pty Ltd.
 
 All rights reserved.
 
@@ -51,7 +56,7 @@ are permitted provided that the following conditions are met:
   list of conditions and the following disclaimer in the documentation and/or
   other materials provided with the distribution.
 
-* Neither the name of the Tim Allen nor the names of its
+* Neither the name of the <%= authorName %> nor the names of its
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
 
