@@ -20,18 +20,28 @@
       "url": "https://github.com/noblesamurai/remote-ffprobe/blob/master/LICENSE"
     }
   ],
-  "main": "lib/remote-ffprobe",
+  "main": "src/index",
   "engines": {
     "node": ">= 0.10.36",
     "npm": ">=1.4.28"
   },
   "scripts": {
-    "test": "make test"
+    "pretest": "semistandard",
+    "test": "mocha --recursive test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2",
+    "request": "^2.87.0"
+  },
   "devDependencies": {
     "chai": "~2.1.2",
-    "mocha": "~2.2.1"
+    "mocha": "^5.2.0",
+    "semistandard": "^12.0.1"
   },
-  "keywords": []
+  "keywords": [],
+  "semistandard": {
+    "env": [
+      "mocha"
+    ]
+  }
 }
