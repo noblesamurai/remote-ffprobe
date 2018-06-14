@@ -1,6 +1,8 @@
 const ffmpeg = require('fluent-ffmpeg');
 const request = require('request');
 const { PassThrough } = require('stream');
+const ffprobe = require('ffprobe-static');
+ffmpeg.setFfprobePath(ffprobe.path);
 
 module.exports = async function (url) {
   return new Promise(function (resolve, reject) {
