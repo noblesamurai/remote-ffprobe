@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "chai": "~2.1.2",
+    "ffprobe-static": "^2.0.0",
     "mocha": "^5.2.0",
     "semistandard": "^12.0.1"
   },
