@@ -17,11 +17,6 @@ module.exports = async function (url) {
   return new Promise(function (resolve, reject) {
     try {
       const stream = request.get(url).pipe(new PassThrough());
-
-      stream.once('end', function () {
-        console.log('shouldn\'t get to end!');
-      });
-
       ffmpeg()
         .once('error', reject)
         .input(stream)
