@@ -1,0 +1,37 @@
+{
+  "name": "remote-ffprobe",
+  "description": "ffprobe a url.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/noblesamurai/remote-ffprobe",
+  "author": {
+    "name": "Tim Allen",
+    "email": "tim@noblesamurai.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/noblesamurai/remote-ffprobe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noblesamurai/remote-ffprobe/issues"
+  },
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "https://github.com/noblesamurai/remote-ffprobe/blob/master/LICENSE"
+    }
+  ],
+  "main": "lib/remote-ffprobe",
+  "engines": {
+    "node": ">= 0.10.36",
+    "npm": ">=1.4.28"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "~2.1.2",
+    "mocha": "~2.2.1"
+  },
+  "keywords": []
+}
