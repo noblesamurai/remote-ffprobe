@@ -20,6 +20,7 @@ module.exports = async function (url) {
       ffmpeg()
         .once('error', reject)
         .input(stream)
+        // .ffprobe(streamIndex, callback)
         .ffprobe(0, function (err, metadata) {
           if (err) {
             reject(err);
