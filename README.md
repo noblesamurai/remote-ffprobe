@@ -28,6 +28,7 @@ ffprobe('http://my/url.mp4').then(metadata => {
 | Param | Type |
 | --- | --- |
 | url | <code>string</code> |
+| timeout | <code>number</code> |
 
 Note: To regenerate this section from the jsdoc run `npm run docs` and paste
 the output above.
