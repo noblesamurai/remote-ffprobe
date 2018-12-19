@@ -22,8 +22,8 @@
   ],
   "main": "src/index",
   "engines": {
-    "node": ">= 0.10.36",
-    "npm": ">=1.4.28"
+    "node": "^8.x",
+    "npm": "^6.x"
   },
   "scripts": {
     "coverage": "nyc -a -c -r html -r text -r lcov npm test",
