@@ -21,14 +21,14 @@ ffprobe('http://my/url.mp4').then(metadata => {
 ## index
 <a name="exp_module_index--module.exports"></a>
 
-### module.exports(url) ⇒ <code>object</code> ⏏
+### module.exports(url, opts) ⇒ <code>object</code> ⏏
 **Kind**: Exported function
-**Returns**: <code>object</code> - the ffprobe metadatra
+**Returns**: <code>object</code> - the ffprobe metadata
 
-| Param | Type |
-| --- | --- |
-| url | <code>string</code> |
-| timeout | <code>number</code> |
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> |  |
+| opts | <code>object</code> | request options (ie. `{ timeout: 1500 }`). |
 
 Note: To regenerate this section from the jsdoc run `npm run docs` and paste
 the output above.
