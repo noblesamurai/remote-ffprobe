@@ -13,7 +13,7 @@ ffmpeg.setFfprobePath(ffprobe.path);
 /**
  * @async
  * @param {string} url
- * @param {object} opts request options (ie. { timeout: 1500 }).
+ * @param {object} opts request options (ie. `{ timeout: 1500 }`).
  * @returns {object} the ffprobe metadata
  */
 module.exports = async function probe (url, opts = {}) {
@@ -31,6 +31,7 @@ module.exports = async function probe (url, opts = {}) {
 /**
  * execute the actual ffprobe call.
  *
+ * @private
  * @async
  * @param {string|stream} input either a stream or a filename.
  * @returns {object} the ffprobe metadata
@@ -47,6 +48,7 @@ async function _probe (input) {
 /**
  * download a stream to a temp file.
  *
+ * @private
  * @async
  * @param {stream} stream
  * @returns {string} filename
