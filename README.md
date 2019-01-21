@@ -29,6 +29,7 @@ ffprobe('http://my/url.mp4').then(metadata => {
 | --- | --- | --- |
 | url | <code>string</code> |  |
 | opts | <code>object</code> | request options (ie. `{ timeout: 1500 }`). |
+| opts.download | <code>boolean</code> | whether to download the file before probing.   Note that this is just to skip the streaming step if you already know you   are dealing with a non-streamable file. If streaming fails, we will   automatically fallback to a download probe. |
 
 Note: To regenerate this section from the jsdoc run `npm run docs` and paste
 the output above.

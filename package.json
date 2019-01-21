@@ -35,7 +35,7 @@
   "dependencies": {
     "fluent-ffmpeg": "^2.1.2",
     "got": "^9.5.1",
-    "tempy": "^0.2.1"
+    "retriable-download": "^2.0.1"
   },
   "peerDependencies": {
     "ffprobe-static": "^2.0.0"
