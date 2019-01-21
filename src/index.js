@@ -1,9 +1,7 @@
+const download = require('retriable-download');
 const ffmpeg = require('fluent-ffmpeg');
 const ffprobe = require('ffprobe-static');
-const fs = require('fs');
 const got = require('got');
-const path = require('path');
-const tempy = require('tempy');
 ffmpeg.setFfprobePath(ffprobe.path);
 
 /**
@@ -14,11 +12,14 @@ ffmpeg.setFfprobePath(ffprobe.path);
  * @async
  * @param {string} url
  * @param {object} opts request options (ie. `{ timeout: 1500 }`).
+ * @param {boolean} opts.download whether to download the file before probing.
+ *   Note that this is just to skip the streaming step if you already know you
+ *   are dealing with a non-streamable file. If streaming fails, we will
+ *   automatically fallback to a download probe.
  * @returns {object} the ffprobe metadata
  */
 module.exports = async function probe (url, opts = {}) {
-  const stream = got.stream(url, opts);
-  const input = opts.download ? await downloadStream(url, stream) : stream;
+  const input = opts.download ? await download(url) : got.stream(url, opts);
   try {
     const data = await _probe(input);
     if (opts.download || (data && data.streams[0] && data.streams[0].profile !== 'unknown')) return data;
@@ -43,23 +44,4 @@ async function _probe (input) {
       .input(input)
       .ffprobe(0, (err, data) => err ? reject(err) : resolve(data));
   });
-}
-
-/**
- * download a stream to a temp file.
- *
- * @private
- * @async
- * @param {stream} stream
- * @returns {string} filename
- */
-async function downloadStream (url, stream) {
-  const filename = tempy.file({ extension: path.extname(url) });
-  await new Promise((resolve, reject) => {
-    const file = fs.createWriteStream(filename);
-    file.on('finish', resolve);
-    file.on('error', reject);
-    stream.pipe(file);
-  });
-  return filename;
 }
