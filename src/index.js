@@ -39,6 +39,7 @@ module.exports = async function probe (url, opts = {}) {
  */
 async function _probe (input) {
   return new Promise((resolve, reject) => {
+    if (input && input.pipe) input.on('error', reject);
     ffmpeg()
       .on('error', reject)
       .input(input)
