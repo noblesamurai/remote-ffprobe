@@ -21,14 +21,15 @@ ffprobe('http://my/url.mp4').then(metadata => {
 ## index
 <a name="exp_module_index--module.exports"></a>
 
-### module.exports(url) ⇒ <code>object</code> ⏏
+### module.exports(url, opts) ⇒ <code>object</code> ⏏
 **Kind**: Exported function
-**Returns**: <code>object</code> - the ffprobe metadatra
+**Returns**: <code>object</code> - the ffprobe metadata
 
-| Param | Type |
-| --- | --- |
-| url | <code>string</code> |
-| timeout | <code>number</code> |
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> |  |
+| opts | <code>object</code> | request options (ie. `{ timeout: 1500 }`). |
+| opts.download | <code>boolean</code> | whether to download the file before probing.   Note that this is just to skip the streaming step if you already know you   are dealing with a non-streamable file. If streaming fails, we will   automatically fallback to a download probe. |
 
 Note: To regenerate this section from the jsdoc run `npm run docs` and paste
 the output above.
