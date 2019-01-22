@@ -28,7 +28,7 @@
   "scripts": {
     "coverage": "nyc -a -c -r html -r text -r lcov npm test",
     "pretest": "semistandard",
-    "test": "mocha --recursive test",
+    "test": "mocha --recursive --exit test",
     "watch": "mocha --recursive --watch test",
     "docs": "jsdoc2md src/index.js"
   },
