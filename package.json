@@ -50,6 +50,9 @@
     "nyc": "^15.0.0",
     "semistandard": "^14.2.0"
   },
+  "files": [
+    "src"
+  ],
   "keywords": [],
   "semistandard": {
     "env": [
