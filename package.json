@@ -22,7 +22,7 @@
   ],
   "main": "src/index",
   "engines": {
-    "node": "^8.x || ^10 || ^12",
+    "node": "^8 || ^10 || ^12",
     "npm": "^6.x"
   },
   "scripts": {
