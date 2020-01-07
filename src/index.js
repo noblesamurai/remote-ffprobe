@@ -25,7 +25,8 @@ module.exports = async function probe (url, opts = {}) {
     if (opts.download || (data && data.streams[0] && data.streams[0].profile !== 'unknown')) return data;
     throw new Error('streaming probe failed, download and try again.');
   } catch (err) {
-    return probe(url, { ...opts, download: true });
+    if (!opts.download) return probe(url, { ...opts, download: true });
+    else throw err;
   }
 };
 
