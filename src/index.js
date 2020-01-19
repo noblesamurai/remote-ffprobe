@@ -27,6 +27,11 @@ module.exports = async function probe (url, opts = {}) {
   } catch (err) {
     if (!opts.download) return probe(url, { ...opts, download: true });
     else throw err;
+  } finally {
+    // since ffprobe might not need to consume the whole stream to return results... we want to
+    // destroy it now to make sure it is cleaned up properly rather than potentially remaining
+    // paused in memory...
+    if (input && input.pipe) input.destroy();
   }
 };
 
