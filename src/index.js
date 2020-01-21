@@ -25,7 +25,8 @@ module.exports = async function probe (url, opts = {}) {
     if (opts.download || (data && data.streams[0] && data.streams[0].profile !== 'unknown')) return data;
     throw new Error('streaming probe failed, download and try again.');
   } catch (err) {
-    return probe(url, { ...opts, download: true });
+    if (!opts.download) return probe(url, { ...opts, download: true });
+    else throw err;
   }
 };
 
@@ -38,11 +39,29 @@ module.exports = async function probe (url, opts = {}) {
  * @returns {object} the ffprobe metadata
  */
 async function _probe (input) {
+  const isStream = input && input.pipe;
   return new Promise((resolve, reject) => {
-    if (input && input.pipe) input.on('error', reject);
-    ffmpeg()
-      .on('error', reject)
-      .input(input)
-      .ffprobe(0, (err, data) => err ? reject(err) : resolve(data));
+    if (isStream) input.on('error', _reject);
+    ffmpeg().on('error', _reject).input(input).ffprobe(0, complete);
+
+    function cleanup () {
+      if (!isStream) return;
+      input.removeListener('error', _reject);
+      // since ffprobe might not need to consume the whole stream to return results... we want to
+      // destroy it now to make sure it is cleaned up properly rather than potentially remaining
+      // paused in memory...
+      input.destroy();
+    }
+    function complete (err, data) {
+      return err ? _reject(err) : _resolve(data);
+    }
+    function _resolve (data) {
+      cleanup();
+      resolve(data);
+    }
+    function _reject (err) {
+      cleanup();
+      reject(err);
+    }
   });
 }
