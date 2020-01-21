@@ -1,7 +1,7 @@
 {
   "name": "remote-ffprobe",
   "description": "ffprobe a url.",
-  "version": "3.0.0-fix-bad-video-case.2",
+  "version": "3.0.0",
   "homepage": "https://github.com/noblesamurai/remote-ffprobe",
   "author": {
     "name": "Tim Allen",
