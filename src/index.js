@@ -46,7 +46,7 @@ async function _probe (input) {
 
     function cleanup () {
       if (!isStream) return;
-      input.removeListener('error', reject);
+      input.removeListener('error', _reject);
       // since ffprobe might not need to consume the whole stream to return results... we want to
       // destroy it now to make sure it is cleaned up properly rather than potentially remaining
       // paused in memory...
