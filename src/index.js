@@ -18,20 +18,21 @@ ffmpeg.setFfprobePath(ffprobe.path);
  *   automatically fallback to a download probe.
  * @returns {object} the ffprobe metadata
  */
-module.exports = async function probe (url, opts = {}) {
-  const input = opts.download ? await download(url) : got.stream(url, opts);
+module.exports = async function probe (url, options = {}) {
+
+  const input = options.download ? await download(url) : got.stream(url, options);
   try {
     const data = await _probe(input);
-    if (opts.download || (data && data.streams[0] && data.streams[0].profile !== 'unknown')) return data;
+    if (options.download || (data && data.streams[0] && data.streams[0].profile !== 'unknown')) return data;
     throw new Error('streaming probe failed, download and try again.');
-  } catch (err) {
-    if (!opts.download) return probe(url, { ...opts, download: true });
-    else throw err;
+  } catch (error) {
+    if (!options.download) return probe(url, { ...options, download: true });
+    throw error;
   }
 };
 
 /**
- * execute the actual ffprobe call.
+ * Execute the actual ffprobe call.
  *
  * @private
  * @async
@@ -47,18 +48,21 @@ async function _probe (input) {
     function cleanup () {
       if (!isStream) return;
       input.removeListener('error', _reject);
-      // since ffprobe might not need to consume the whole stream to return results... we want to
+      // Since ffprobe might not need to consume the whole stream to return results... we want to
       // destroy it now to make sure it is cleaned up properly rather than potentially remaining
       // paused in memory...
       input.destroy();
     }
+
     function complete (err, data) {
       return err ? _reject(err) : _resolve(data);
     }
+
     function _resolve (data) {
       cleanup();
       resolve(data);
     }
+
     function _reject (err) {
       cleanup();
       reject(err);
