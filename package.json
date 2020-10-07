@@ -1,7 +1,7 @@
 {
   "name": "remote-ffprobe",
   "description": "ffprobe a url.",
-  "version": "4.0.0",
+  "version": "5.0.0-ffprobe.0",
   "homepage": "https://github.com/noblesamurai/remote-ffprobe",
   "author": {
     "name": "Tim Allen",
@@ -37,9 +37,6 @@
     "got": "^9.5.1",
     "retriable-download": "^3.0.0"
   },
-  "peerDependencies": {
-    "ffprobe-static": "^3.0.0"
-  },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
@@ -66,5 +63,8 @@
   "xo": {
     "env": "mocha",
     "extends": "semistandard"
+  },
+  "optionalDependencies": {
+    "ffprobe-static": "^3.0.0"
   }
 }

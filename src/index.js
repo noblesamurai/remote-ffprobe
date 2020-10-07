@@ -1,8 +1,8 @@
 const download = require('retriable-download');
 const ffmpeg = require('fluent-ffmpeg');
-const ffprobe = require('ffprobe-static');
+const ffprobePath = require('./ffprobe-path');
 const got = require('got');
-ffmpeg.setFfprobePath(ffprobe.path);
+ffmpeg.setFfprobePath(ffprobePath);
 
 /**
  * @module
@@ -19,7 +19,6 @@ ffmpeg.setFfprobePath(ffprobe.path);
  * @returns {object} the ffprobe metadata
  */
 module.exports = async function probe (url, options = {}) {
-
   const input = options.download ? await download(url) : got.stream(url, options);
   try {
     const data = await _probe(input);
