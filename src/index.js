@@ -1,8 +1,6 @@
 const download = require('retriable-download');
 const ffmpeg = require('fluent-ffmpeg');
-const ffprobe = require('ffprobe-static');
 const got = require('got');
-ffmpeg.setFfprobePath(ffprobe.path);
 
 /**
  * @module
@@ -12,6 +10,7 @@ ffmpeg.setFfprobePath(ffprobe.path);
  * @async
  * @param {string} url
  * @param {object} opts request options (ie. `{ timeout: 1500 }`).
+ * @param {string?} opts.ffprobePath path to the ffprobe binary.
  * @param {boolean} opts.download whether to download the file before probing.
  *   Note that this is just to skip the streaming step if you already know you
  *   are dealing with a non-streamable file. If streaming fails, we will
@@ -19,6 +18,9 @@ ffmpeg.setFfprobePath(ffprobe.path);
  * @returns {object} the ffprobe metadata
  */
 module.exports = async function probe (url, opts = {}) {
+  const { ffprobePath } = opts;
+  if (ffprobePath) ffmpeg.setFfprobePath(ffprobePath);
+
   const input = opts.download ? await download(url) : got.stream(url, opts);
   try {
     const data = await _probe(input);
