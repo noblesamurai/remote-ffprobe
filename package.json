@@ -27,7 +27,7 @@
   },
   "scripts": {
     "coverage": "nyc -a -c -r html -r text -r lcov npm test",
-    "pretest": "semistandard",
+    "pretest": "xo",
     "test": "mocha --recursive --exit test",
     "watch": "mocha --recursive --watch test",
     "docs": "jsdoc2md src/index.js"
@@ -43,12 +43,16 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "eslint-config-semistandard": "^15.0.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-standard": "^4.0.1",
     "ffprobe-static": "^3.0.0",
     "jsdoc-to-markdown": "^4.0.1",
     "mocha": "^7.0.0",
     "nock": "^11.7.1",
     "nyc": "^15.0.0",
-    "semistandard": "^14.2.0"
+    "xo": "^0.33.1"
   },
   "files": [
     "src"
@@ -58,5 +62,9 @@
     "env": [
       "mocha"
     ]
+  },
+  "xo": {
+    "env": "mocha",
+    "extends": "semistandard"
   }
 }
