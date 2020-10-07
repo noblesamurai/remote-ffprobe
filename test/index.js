@@ -4,6 +4,7 @@ const nock = require('nock');
 const path = require('path');
 const remoteffprobe = require('..');
 
+chai.use(require('chai-as-promised'));
 
 describe('remote-ffprobe', () => {
   it('gives ffprobe info for a streamable video', async () => {
