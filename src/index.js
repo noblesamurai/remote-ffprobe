@@ -1,8 +1,8 @@
 const download = require('retriable-download');
 const ffmpeg = require('fluent-ffmpeg');
-const ffprobe = require('ffprobe-static');
+const ffprobePath = require('./ffprobe-path');
 const got = require('got');
-ffmpeg.setFfprobePath(ffprobe.path);
+ffmpeg.setFfprobePath(ffprobePath);
 
 /**
  * @module
