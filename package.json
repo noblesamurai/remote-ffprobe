@@ -1,7 +1,7 @@
 {
   "name": "remote-ffprobe",
   "description": "ffprobe a url.",
-  "version": "5.0.1-screen-recording.0",
+  "version": "5.0.1",
   "homepage": "https://github.com/noblesamurai/remote-ffprobe",
   "author": {
     "name": "Tim Allen",
