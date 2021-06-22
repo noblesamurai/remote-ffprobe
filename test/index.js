@@ -40,7 +40,7 @@ describe('remote-ffprobe', () => {
     nock('https://testing.com')
       .get('/somepage.html')
       .times(Infinity)
-      .replyWithFile(200, require.resolve('./fixtures/s3.amazonaws.com.html'));
+      .replyWithFile(200, require.resolve('./fixtures/somepage.html'));
     const probe = remoteffprobe('https://testing.com/somepage.html');
     await expect(probe).to.eventually.be.rejectedWith(Error);
     nock.cleanAll();
