@@ -41,6 +41,21 @@ This module is installed via npm:
 ``` bash
 $ npm install <%= appNameSlug %>
 ```
+
+## Contributing
+
+### Prerequisites
+
+```
+$ pip install pre-commit
+```
+
+### Installation
+
+```
+$ pre-commit install --install-hooks
+```
+
 ## License
 The BSD License
 
